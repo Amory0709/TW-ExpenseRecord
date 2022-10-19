@@ -1,0 +1,38 @@
+<h2> Submit you expense here:</h2>
+
+<div>
+    <mat-form-field class="expense-form-field" appearance="fill">
+        <mat-label>Description</mat-label>
+        <input matInput type="text" [(ngModel)]="description">
+        <button *ngIf="description" matSuffix mat-icon-button aria-label="Clear" (click)="description=''">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+    
+    <mat-form-field class="expense-form-field" appearance="fill">
+        <mat-label>Type</mat-label>
+        <input matInput type="text" [(ngModel)]="type">
+        <button *ngIf="type" matSuffix mat-icon-button aria-label="Clear" (click)="type=''">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+    
+    <mat-form-field class="expense-form-field" appearance="fill">
+        <mat-label>Amount</mat-label>
+        <input matInput type="number"  [(ngModel)]="amount" placeholder="0">
+        <span matPrefix>￥&nbsp;</span>
+        <button *ngIf="amount" matSuffix mat-icon-button aria-label="Clear" (click)="amount=0">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-form-field class="expense-form-field" appearance="fill">
+        <mat-label>Date</mat-label>
+        <input matInput type="date" [(ngModel)]="date">
+        <button *ngIf="date" matSuffix mat-icon-button aria-label="Clear" (click)="date=''">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
+
+<button class="add-button" mat-raised-button color="primary" (click)="onAddClick()">Add</button>
