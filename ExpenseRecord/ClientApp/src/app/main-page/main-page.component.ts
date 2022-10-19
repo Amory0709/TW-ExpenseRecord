@@ -53,7 +53,7 @@ export class MainPageComponent implements OnInit {
         }
       },
       err => {
-        console.error("Cannot add this expense. " + err);
+        console.error("Cannot delete this expense. " + err);
       }
     );
   }
