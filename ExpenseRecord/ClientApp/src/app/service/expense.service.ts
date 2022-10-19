@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-import { TaggedTemplateExpr } from '@angular/compiler';
 import { Inject, Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { Expense } from '../models/expense.model';
@@ -16,9 +15,10 @@ export class ExpenseService {
   }
 
   getExpenseList(): Observable<Expense[]>{
-    return this.http.get<Expense[]>(this.baseUrl + 'expenses', { responseType: 'text' as 'json' })
+    return this.http.get<string>(this.baseUrl + 'expenses', { responseType: 'text' as 'json' })
     .pipe(
-      map(res => res as Expense[])
+      map(res => this.deserializeExpenseList(res)),
+      tap( res => console.log(res))
     );
   }
 
@@ -34,5 +34,9 @@ export class ExpenseService {
     .pipe(
       map( res => res === 200)
     );
+  }
+
+  deserializeExpenseList(res: string): Expense[]{
+    return JSON.parse(res) as Expense[];
   }
 }
