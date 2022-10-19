@@ -7,7 +7,7 @@ import { Expense } from '../models/expense.model';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-
+  expenseList: Expense[] = [];
   constructor() { }
 
   ngOnInit(): void {
@@ -15,6 +15,14 @@ export class MainPageComponent implements OnInit {
 
   onNewExpenseAdded($event: Expense) {
     console.log($event);
+    this.expenseList.unshift($event);
+    console.log(this.expenseList);
+    
+  }
+
+  onDeleteClicked(item: Expense) {
+    const toBeDeleted = this.expenseList.findIndex(i => i === item)
+    this.expenseList.splice(toBeDeleted, 1)
   }
 
 }
